@@ -4,7 +4,7 @@
 /* Unit: ms */
 u32_t sys_now(void)
 {
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return (u32_t)tv.tv_sec * 1000 + (u32_t)tv.tv_usec / 1000;
+    unsigned long mtime;
+    mtime = *(volatile unsigned long *)(0x30bff8UL);
+    return (u32_t)(mtime * 4 / 5 / 1000);
 }
